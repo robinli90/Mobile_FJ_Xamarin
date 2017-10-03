@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mobile_FJ.NewOrder"
+             BackgroundImage="mainBG.jpg">
+  <!-->BackgroundColor="#404040"-->
+  <StackLayout>
+
+    <StackLayout Spacing="0">
+      <Grid ColumnSpacing="1" HorizontalOptions="FillAndExpand" VerticalOptions="Center"  BackgroundColor="CadetBlue" Padding="5,5,5,5">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="2*"/>
+          <ColumnDefinition Width="7*"/>
+          <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="50" />
+          <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <Label x:Name="LocationLabel" Grid.Row ="0" Grid.Column="0" Margin="0" Text="Location" TextColor="White"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+        <Picker x:Name="LocationPicker" SelectedIndexChanged="LocationPicker_OnSelectedIndexChanged" Title="Select a location" Grid.Row ="0" Grid.Column="1" Margin="0" BackgroundColor="DarkSlateGray" TextColor="White" />
+        <Button x:Name="AddLocation" Grid.Row ="0" Grid.Column="2" Margin="0" Text="+"  Clicked="AddLocation_OnClicked"/>
+        <Label x:Name="PaymentTypeLabel" Grid.Row ="1" Grid.Column="0" Margin="0" Text="Payment" TextColor="White"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+        <Picker x:Name="PaymentPicker" SelectedIndexChanged="PaymentPicker_OnSelectedIndexChanged" Title="Select a payment" Grid.Row ="1" Grid.Column="1" Margin="0" BackgroundColor="DarkSlateGray" TextColor="White" />
+        <Button x:Name="AddPayment" Grid.Row ="1" Grid.Column="2" Margin="0" Text="+"  Clicked="AddPayment_OnClicked"/>
+      </Grid>
+      <Grid BackgroundColor="DarkSlateGray">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <Label x:Name="OrderTitle" Grid.Column="0" Margin="0" Text="ITEMS IN THIS ORDER" TextColor="White"  HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+      </Grid>
+    </StackLayout>
+
+    <Label x:Name="noItemFoundLabel" IsVisible="False" Text="No items in current order"
+           TextColor="Black"  HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+    </Label>
+
+    <ListView x:Name="listView1"
+              WidthRequest="200"
+              HasUnevenRows="true"
+              ItemsSource="{Binding Items}"
+              SeparatorColor="#484848">
+
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <ViewCell.ContextActions>
+              <MenuItem Text="Delete" Clicked="DeleteItem_OnClicked" IsDestructive="True" CommandParameter="{Binding Name}"></MenuItem>
+              <MenuItem Text="Edit" Clicked="EditItem_OnClicked" CommandParameter="{Binding Name}"></MenuItem>
+            </ViewCell.ContextActions>
+            <Grid Padding="8,8">
+              <Label Text="{Binding labelText}"
+                     TextColor="White">
+              </Label>
+            </Grid>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+
+    <StackLayout Margin="0" Spacing="0" HorizontalOptions="Fill" VerticalOptions="Center" HeightRequest="28">
+      <Label FontFamily="Fonts/PatrickHandSC-Regular.ttf#PatrickHandSC-Regular" x:Name="orderTotal" Margin="9" Text="" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+    </StackLayout>
+
+    <Grid ColumnSpacing="0" Margin="0">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="*"/>
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+      <Button x:Name="NewItemButton" Grid.Column="0" Margin="0" Text="New Item" Clicked="CreateNewItem"/>
+      <Button x:Name="SaveOrderButton" Grid.Column="1" Margin="0" Text="Save Order" Clicked="SaveOrder"/>
+    </Grid>
+
+  </StackLayout>
+
+</ContentPage>

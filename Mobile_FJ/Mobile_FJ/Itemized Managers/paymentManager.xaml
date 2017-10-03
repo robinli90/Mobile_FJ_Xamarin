@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mobileFj="clr-namespace:Mobile_FJ;assembly=Mobile_FJ"
+             x:Class="Mobile_FJ.paymentManager"
+             BackgroundColor="#404040">
+  <StackLayout Spacing="0">
+
+      <Grid ColumnSpacing="1" BackgroundColor="DarkSlateGray">
+          <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="7*"/>
+              <ColumnDefinition Width="2*"/>
+          </Grid.ColumnDefinitions>
+          <Grid.RowDefinitions>
+              <RowDefinition Height="50" />
+          </Grid.RowDefinitions>
+          <Label x:Name="PaymentLabel" Grid.Column="0" Margin="0" Text="MANAGE YOUR PAYMENTS" TextColor="White"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+          <Button HeightRequest="50" x:Name="NewPaymentButton" Grid.Column="1" Margin="0" Text="ADD" Clicked="NewPaymentButton_OnClicked"/>
+      </Grid>
+        <StackLayout>
+
+          <Grid x:Name="gridView1" IsVisible="false" ColumnSpacing="1" HorizontalOptions="FillAndExpand" VerticalOptions="Center" BackgroundColor="CadetBlue"
+                Padding="5,5,5,5">
+              <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="2*"/>
+                  <ColumnDefinition Width="7*"/>
+                  <ColumnDefinition Width="*"/>
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                  <RowDefinition Height="50" />
+              </Grid.RowDefinitions>
+              <Label Grid.Column="0" Margin="0" Text="Payment:" TextColor="White"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+              <Entry x:Name="PaymentNameBox" Grid.Column="1" Margin="0"  TextColor="White" BackgroundColor="DarkSlateGray"/>
+              <Button HeightRequest="50" x:Name="AddPayment" Grid.Column="2" Margin="0" Text="+"  Clicked="AddPayment_OnClicked"/>
+          </Grid>
+          
+        
+        </StackLayout>
+
+        <ListView x:Name="PaymentManagerListView"
+                  WidthRequest="200"
+                  HasUnevenRows="true"
+                  ItemsSource="{Binding Payments}"
+                  SeparatorColor="#484848">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.ContextActions>
+                            <MenuItem Text="Delete" Clicked="DeleteItem_OnClicked" IsDestructive="True" CommandParameter="{Binding}"></MenuItem>
+                            <MenuItem Text="Rename" Clicked="EditItem_OnClicked" CommandParameter="{Binding}"></MenuItem>
+                        </ViewCell.ContextActions>
+                        <Grid Padding="5,10">
+                            <Label Text="{Binding}"
+                                   TextColor="White">
+                            </Label>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </StackLayout>
+
+</ContentPage>

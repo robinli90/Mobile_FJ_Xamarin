@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mobileFj="clr-namespace:Mobile_FJ;assembly=Mobile_FJ"
+             xmlns:objectsAndClasses="clr-namespace:Mobile_FJ.Objects_and_Classes;assembly=Mobile_FJ"
+             x:Class="Mobile_FJ.MainPage"
+             BackgroundImage="mainBG.jpg">
+  
+    <ContentPage.Resources>
+        <ResourceDictionary>
+          <objectsAndClasses:YesNoSyncColorConverter
+            x:Key="YesNoSyncColorConverter2">
+          </objectsAndClasses:YesNoSyncColorConverter> 
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+  <StackLayout>
+    
+      <ActivityIndicator
+          x:Name="AIndicator"
+          BackgroundColor="Gray"
+          BindingContext="{x:Reference MainPage}"
+          IsVisible="{Binding IsBusy}"
+          IsRunning="{Binding IsBusy}"
+          VerticalOptions="Center" HorizontalOptions="Center"
+          Color="White" />
+    
+    <Grid BackgroundColor="DarkSlateGray">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+            <Label x:Name="OrderTitle" Grid.Column="0" Margin="0" Text="YOUR ORDERS" TextColor="White"  HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+        </Grid>
+
+
+        <Label x:Name="noOrdersFoundLabel" IsVisible="False" Text="You have no orders"
+                TextColor="Black"  HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+        </Label>
+      
+        <ListView x:Name="listView1"
+                  WidthRequest="200"
+                  HasUnevenRows="true"
+                  ItemsSource="{Binding Orders}"
+                  SeparatorColor="#484848"
+                  >
+          
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.ContextActions>
+                          <MenuItem Text="Delete" Clicked="DeleteOrder_OnClick" IsDestructive="True" CommandParameter="{Binding .}"></MenuItem>
+                        </ViewCell.ContextActions>
+                        <Grid Padding="5,10">
+                            <Label Text="{Binding labelText}"
+                                    
+                                   TextColor="{Binding IsSyncing, Path=IsSyncing, Converter={StaticResource YesNoSyncColorConverter2}, ConverterParameter=isSyncing}">
+                            </Label>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Grid ColumnSpacing= "0" RowSpacing="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Button Grid.Column="0" Margin="0" Text="New Order" Clicked="CreateNewOrder"/>
+            <Button Grid.Column="1" Margin="0" Text="Shopping List" Clicked="ShoppingButton_OnClick"/>
+            <Button Grid.Row="1" x:Name="refreshButton" Grid.Column="0" Margin="0" Text="Refresh" Clicked="SettingsButton_Clicked"/>
+            <Button Grid.Row="1" Grid.Column="1" Margin="0" Text="Sync Orders" Clicked="SyncToServer_OnClick"/>
+        </Grid>
+    </StackLayout>
+</ContentPage>

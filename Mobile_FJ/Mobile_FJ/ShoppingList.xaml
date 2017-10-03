@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mobileFj="clr-namespace:Mobile_FJ;assembly=Mobile_FJ"
+             x:Class="Mobile_FJ.ShoppingList"
+             BackgroundColor="#404040">
+  <StackLayout Spacing="0">
+
+      <Grid ColumnSpacing="1" BackgroundColor="DarkSlateGray">
+          <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="7*"/>
+              <ColumnDefinition Width="2*"/>
+          </Grid.ColumnDefinitions>
+          <Grid.RowDefinitions>
+              <RowDefinition Height="50" />
+          </Grid.RowDefinitions>
+          <Label x:Name="ShopItemLabel" Grid.Column="0" Margin="0" Text="YOUR SHOPPING LIST" TextColor="White"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+          <Button HeightRequest="50" x:Name="NewShopItemButton" Grid.Column="1" Margin="0" Text="ADD" Clicked="NewShopItemButton_OnClicked"/>
+      </Grid>
+        <StackLayout>
+
+          <Grid x:Name="gridView1" IsVisible="false" ColumnSpacing="1" HorizontalOptions="FillAndExpand" VerticalOptions="Center" BackgroundColor="CadetBlue"
+                Padding="5,5,5,5">
+              <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="2*"/>
+                  <ColumnDefinition Width="7*"/>
+                  <ColumnDefinition Width="*"/>
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                  <RowDefinition Height="50" />
+                  <RowDefinition Height="50" />
+              </Grid.RowDefinitions>
+            
+              <Label Grid.Column="0" Margin="0" Text="Name:" TextColor="White"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+              <Entry x:Name="ShopItemNameBox" Grid.ColumnSpan="2" Grid.Column="1" Margin="0"  TextColor="White" BackgroundColor="DarkSlateGray"/>
+            
+              <Label Grid.Row="1" Grid.Column="0" Margin="0" Text="Category:" TextColor="White"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+              <Picker x:Name="CategoryPicker" Title="Select a category" Grid.Row ="1" Grid.Column="1" Margin="0" BackgroundColor="DarkSlateGray" TextColor="White" />
+              <Button Grid.Row="1" HeightRequest="50" x:Name="AddShopItem" Grid.Column="2" Margin="0" Text="+"  Clicked="AddShopItem_OnClicked"/>
+
+          </Grid>
+          
+        
+        </StackLayout>
+
+        <ListView x:Name="ShopItemManagerListView"
+                  WidthRequest="200"
+                  HasUnevenRows="true"
+                  ItemsSource="{Binding ListView}"
+                  SeparatorColor="#484848">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.ContextActions>
+                            <MenuItem Text="Delete" Clicked="DeleteItem_OnClicked" IsDestructive="True" CommandParameter="{Binding Name}"></MenuItem>
+                        </ViewCell.ContextActions>
+                        <Grid Padding="5,10">
+                            <Label Text="{Binding LabelString}"
+                                   TextColor="White">
+                            </Label>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+
+      <Grid ColumnSpacing="0" Margin="0">
+          <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="*"/>
+              <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+          <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+          <Button x:Name="Update" Grid.Column="0" Margin="0" Text="Download" Clicked="Update_OnClick"/>
+          <Button x:Name="Clear" Grid.Column="1" Margin="0" Text="Clear Items" Clicked="ClearButton_OnClick"/>
+      </Grid>
+
+    </StackLayout>
+
+</ContentPage>

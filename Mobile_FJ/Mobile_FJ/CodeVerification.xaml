@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:objectsAndClasses="clr-namespace:Mobile_FJ.Objects_and_Classes;assembly=Mobile_FJ"
+             x:Class="Mobile_FJ.CodeVerification"
+             BackgroundImage="loginBG.jpg">
+
+
+    <Grid ColumnSpacing="0" RowSpacing="0" HorizontalOptions="Center" VerticalOptions="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="7*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackLayout Spacing="0" Padding="0" Grid.Row="1" Grid.Column="1" HeightRequest="2590" WidthRequest="2950" >
+
+            <Label></Label>
+            <Label></Label>
+            <Label></Label>
+
+            <Label x:Name="Label1" FontFamily="Fonts/PatrickHandSC-Regular.ttf#PatrickHandSC-Regular" Margin="10" Text="YOUR VERIFICATION CODE" TextColor="White" FontSize="15" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Entry Placeholder="123456789" Keyboard="Numeric" PlaceholderColor="White" x:Name="codeTextBox" Opacity="0.5" Margin="0" HorizontalTextAlignment="Center" BackgroundColor="CadetBlue" TextColor="White" HorizontalOptions="Fill" VerticalOptions="Center" />
+
+            <Label></Label>
+            <Label></Label>
+
+            <Grid Margin="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="1" x:Name="loginButton" Clicked="ValidateLogin_OnClick" WidthRequest="100" Margin="0" Text="LOGIN"  HorizontalOptions="Fill" VerticalOptions="Center" HeightRequest="40">
+                    <Button.Effects>
+                        <objectsAndClasses:FocusEffect/>
+                    </Button.Effects>
+                </Button>
+            </Grid>
+            <Label></Label>
+
+
+        </StackLayout>
+    </Grid>
+
+</ContentPage>

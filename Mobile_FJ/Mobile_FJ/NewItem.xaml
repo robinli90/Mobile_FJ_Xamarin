@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mobile_FJ.NewItem"
+             BackgroundImage="itemBG.jpg">
+
+    <Grid ColumnSpacing="0" RowSpacing="0" HorizontalOptions="Center" VerticalOptions="Center"  BackgroundColor="#02FFFFFF">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2.5*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="2.5*" />
+        </Grid.RowDefinitions>
+      
+      <StackLayout Spacing="0" Padding="0" BackgroundColor="#404040" Opacity="0.9" Grid.Row="1" Grid.Column="1" HeightRequest="2590" WidthRequest="2950" >
+
+        <StackLayout HeightRequest="30" HorizontalOptions="Fill" VerticalOptions="Fill" Opacity="0.9" BackgroundColor="DarkSlateGray">
+          <Label HeightRequest="30" FontSize="20" Opacity="0.9" BackgroundColor="DarkSlateGray" x:Name="itemTitleLabel" TextColor="White" Margin="0" Text="ADD A NEW ITEM"  HorizontalOptions="Center" VerticalOptions="FillAndExpand"/>
+        </StackLayout>
+        
+        <Grid Margin="5,15,15,5" HorizontalOptions="Center" VerticalOptions="Center"  BackgroundColor="#02FFFFFF" HeightRequest="300">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+          </Grid.ColumnDefinitions>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="2.5*"/>
+            <RowDefinition Height="2.5*"/>
+            <RowDefinition Height="2.5*"/>
+            <RowDefinition Height="2.5*"/>
+          </Grid.RowDefinitions>
+          
+            <Label x:Name="Label1" Grid.Row ="0" Grid.Column="0" Margin="10" Text="Item" TextColor="White"  HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
+            <Entry x:Name="itemNameBox" Grid.ColumnSpan="2" Grid.Row ="0" Grid.Column="1" Margin="0" BackgroundColor="#484848" TextColor="White" VerticalOptions="Center"/>
+
+            <Label x:Name="Label2" Grid.Row ="1" Grid.Column="0" Margin="10" Text="Category" TextColor="White"  HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
+            <Picker x:Name="CategoryPicker" SelectedIndexChanged="CategoryPicker_OnSelectedIndexChanged" Title="Select a category" Grid.Row ="1" Grid.Column="1" Margin="0" BackgroundColor="#484848" TextColor="White" VerticalOptions="Center" />
+            <Button x:Name="AddCategoryButton" Clicked="AddCategoryButton_OnClicked" WidthRequest="50" Margin="0" Grid.Row ="1" Grid.Column="2" Text="+"  HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+
+          <Label x:Name="Label3" Grid.Row ="2" Grid.Column="0" Margin="10" Text="Quantity" TextColor="White"  HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
+            <Picker x:Name="QuantityPicker" Grid.ColumnSpan="2" Title="Select quantity" Grid.Row ="2" Grid.Column="1" Margin="0" BackgroundColor="#484848" TextColor="White" VerticalOptions="Center" />
+
+            <Label x:Name="Label4" Grid.Row ="3" Grid.Column="0" Margin="10" Text="Price (ea)" TextColor="White"  HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
+            <Entry Keyboard="Numeric" Grid.ColumnSpan="2" x:Name="itemPriceBox" Grid.Row ="3" Grid.Column="1" Margin="0" BackgroundColor="#484848" TextColor="White" VerticalOptions="Center" />
+          
+        </Grid>
+        
+        <Button x:Name="AddItemButton" Clicked="AddItemButton_OnClicked" WidthRequest="100" Margin="0" Text="ADD"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+
+      </StackLayout>
+      </Grid>
+  
+</ContentPage>
