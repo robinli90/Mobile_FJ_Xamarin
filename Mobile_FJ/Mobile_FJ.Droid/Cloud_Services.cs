@@ -14,9 +14,8 @@ namespace Mobile_FJ.Droid
     class CloudServices : IFtpWebRequest
     {
         private static string ftpUsername = "Guest";
-        private static string ftpPassword = "robinisthebest";
-        private static string ftpPath =
-            @"ftp://robinli.asuscomm.com/Seagate_Backup_Plus_Drive/Personal%20Banker/Cloud_Sync/";
+        private static string ftpPassword = "Hidden";
+        private static string ftpPath = "Hidden";
 
 
 
